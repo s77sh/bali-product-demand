@@ -1,0 +1,9 @@
+You are advising on product demand in Bali, Indonesia. Answer from your own knowledge; do not run commands or edit files.
+
+Business model: find a local supplier, take good product photos, run Google Search ads, sell and deliver locally in Bali. Buyers are locals (Indonesian language) and tourists/expats (English).
+
+Excluded: anything where Shopee/Tokopedia/Lazada win on price (generic small commodities such as helmets, sunscreen, frozen food, phone accessories), coffee, and pure services with no product (car/scooter rental, laundry, AC service).
+
+Already tested (21 niches): flowers/bouquets, e-bikes, kebaya, pet food, mattresses, CCTV, Balinese offerings (canang/banten), solar panels, water filters, wine/alcohol, furniture/sofas, wedding decoration, hampers, birthday cakes, catering, ceramic tiles, batu paras stone, kain endek/songket, rattan products, ornamental plants, souvenirs/oleh-oleh.
+
+Task: list 12 to 15 product niches we MISSED that fit this model in Bali (bulky, urgent, perishable, custom, high-ticket, needs local delivery or installation, or tourist/expat-specific). For each give: niche name, why marketplaces don't win it, and 4 bottom-of-funnel Google search keywords (mix Indonesian and English, e.g. with "bali", "denpasar", "harga", "jual", "delivery"). Output as a plain list, compact.

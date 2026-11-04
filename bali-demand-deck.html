@@ -1,0 +1,245 @@
+<title>Bali Demand Deck</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one 16:9 slide per niche, ranked by Google ad reach; queries drawn as search boxes; slide 0 is the ranked overview. */
+:root {
+  --paper: #E8EDE6;      /* sawah haze */
+  --sheet: #F5F7F3;
+  --ink: #18242B;        /* basalt */
+  --muted: #56645F;
+  --line: #C3CDC2;
+  --sawah: #3E6B39;      /* searches */
+  --kunyit: #C98A12;     /* ad reach */
+  --kunyit-soft: #F3DFAE;
+  --sawah-soft: #CFE0C6;
+  --stone: #8A938F;
+  --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #10181C; --sheet: #172128; --ink: #E4EBE5; --muted: #9AA8A2; --line: #2C3A40;
+    --sawah: #8DBE7E; --kunyit: #F0BC4E; --kunyit-soft: #4A3A14; --sawah-soft: #24402A; --stone: #6E7A76;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #10181C; --sheet: #172128; --ink: #E4EBE5; --muted: #9AA8A2; --line: #2C3A40;
+  --sawah: #8DBE7E; --kunyit: #F0BC4E; --kunyit-soft: #4A3A14; --sawah-soft: #24402A; --stone: #6E7A76;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--body); font-size: 16px; line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 16px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.stage { width: 100%; max-width: 1180px; display: flex; flex-direction: column; gap: 12px; }
+.slide {
+  background: var(--sheet); border: 1px solid var(--line); border-radius: 6px;
+  aspect-ratio: 16 / 9; max-width: 100%; width: 100%;
+  padding: clamp(18px, 3.2vw, 44px);
+  display: grid; overflow: hidden; position: relative;
+}
+.slide[hidden] { display: none !important; }
+
+/* niche slide */
+.niche { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); grid-template-rows: auto 1fr auto; column-gap: clamp(20px, 3.5vw, 52px); row-gap: 14px; }
+.top { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; color: var(--muted); font-size: 0.86rem; }
+.rank { font-family: var(--display); font-weight: 600; font-size: 1.15rem; color: var(--ink); letter-spacing: 0.01em; }
+.rank span { color: var(--muted); font-weight: 600; }
+.pill { font-size: 0.8rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.pill.go { background: var(--sawah-soft); color: var(--sawah); }
+.pill.maybe { background: var(--kunyit-soft); color: var(--kunyit); }
+.pill.other { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.pill.maps { background: transparent; color: var(--sawah); border: 1px dashed var(--sawah); }
+.left { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; gap: 16px; }
+h2 {
+  font-family: var(--display); font-weight: 800; margin: 0;
+  font-size: clamp(2.6rem, 7.6vw, 6.4rem); line-height: 0.88; letter-spacing: -0.005em;
+  text-wrap: balance; text-transform: none;
+}
+.note { margin: 10px 0 0; color: var(--muted); max-width: 46ch; font-size: clamp(0.9rem, 1.25vw, 1.02rem); }
+.figs { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; column-gap: clamp(18px, 3vw, 40px); row-gap: 4px; }
+.fig b { display: block; font-family: var(--display); font-weight: 800; font-size: clamp(1.7rem, 3.6vw, 2.9rem); line-height: 1; }
+.fig.s b { color: var(--sawah); }
+.fig.a b { color: var(--kunyit); }
+.fig small { color: var(--muted); font-size: 0.8rem; }
+.scale { margin-top: 2px; }
+.scale svg { width: 100%; height: auto; display: block; overflow: visible; }
+.right { display: flex; flex-direction: column; justify-content: center; gap: 14px; min-width: 0; }
+.right h3 { margin: 0; font-size: 0.9rem; font-weight: 600; color: var(--muted); }
+.q { display: flex; flex-direction: column; gap: 6px; }
+.box {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 24px;
+  padding: 9px 16px; font-size: clamp(0.98rem, 1.6vw, 1.25rem); font-weight: 500; min-width: 0;
+}
+.box svg { flex: none; width: 18px; height: 18px; color: var(--stone); }
+.box .t { overflow-wrap: anywhere; min-width: 0; }
+.box .caret { width: 2px; height: 1.1em; background: var(--ink); flex: none; margin-left: -6px; }
+.meta { display: flex; flex-wrap: wrap; gap: 4px 14px; padding-left: 18px; font-size: 0.8rem; color: var(--muted); }
+.meta em { font-style: normal; color: var(--ink); font-weight: 600; }
+.foot { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 0.76rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; }
+
+/* overview */
+.overview { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); column-gap: clamp(20px, 4vw, 56px); align-items: stretch; }
+.ov-left { display: flex; flex-direction: column; justify-content: space-between; gap: 16px; min-width: 0; }
+.ov-left h1 { font-family: var(--display); font-weight: 800; font-size: clamp(3rem, 8.4vw, 7.2rem); line-height: 0.86; margin: 0; text-wrap: balance; }
+.ov-left p { margin: 0; color: var(--muted); max-width: 40ch; font-size: clamp(0.88rem, 1.2vw, 1rem); }
+.key { display: flex; flex-direction: column; gap: 6px; font-size: 0.82rem; color: var(--muted); }
+.key i { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: -1px; margin-right: 6px; }
+.key .sw.solid { background: var(--c); }
+.key .sw.striped { background: repeating-linear-gradient(135deg, var(--c) 0 4px, var(--c-soft) 4px 7px); }
+.overview { --c: var(--kunyit); --c-soft: var(--kunyit-soft); }
+.overview.srch { --c: var(--sawah); --c-soft: var(--sawah-soft); }
+.bars { columns: 2; column-gap: 22px; min-width: 0; align-self: center; }
+.bar {
+  break-inside: avoid; display: grid; grid-template-columns: 9.5em 1fr 3.4em; align-items: center; gap: 8px;
+  width: 100%; border: 0; background: none; color: inherit; font: inherit; font-size: clamp(0.66rem, 0.95vw, 0.82rem);
+  padding: 2px 0; cursor: pointer; text-align: left;
+}
+.bar .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar .tr { height: 9px; background: var(--paper); border-radius: 2px; position: relative; }
+.bar .tr span { position: absolute; inset: 0 auto 0 0; background: var(--kunyit); border-radius: 2px; }
+.bar.codex .tr span { background: repeating-linear-gradient(135deg, var(--kunyit) 0 4px, var(--kunyit-soft) 4px 7px); }
+.bar.srch .tr span { background: var(--sawah); }
+.bar.srch.codex .tr span { background: repeating-linear-gradient(135deg, var(--sawah) 0 4px, var(--sawah-soft) 4px 7px); }
+.bar .v { text-align: right; color: var(--muted); }
+.bar:hover .nm, .bar:focus-visible .nm { color: var(--sawah); text-decoration: underline; }
+
+/* controls */
+.ctl { display: flex; align-items: center; gap: 10px; justify-content: space-between; flex-wrap: wrap; }
+.ctl .grp { display: flex; gap: 8px; align-items: center; }
+button.nav {
+  font: inherit; font-size: 0.9rem; font-weight: 600; color: var(--ink); background: var(--sheet);
+  border: 1px solid var(--line); border-radius: 6px; padding: 7px 14px; cursor: pointer;
+}
+button.nav:disabled { opacity: 0.4; cursor: default; }
+.count { color: var(--muted); font-size: 0.88rem; }
+select { font: inherit; font-size: 0.9rem; color: var(--ink); background: var(--sheet); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; max-width: 60vw; }
+:focus-visible { outline: 2px solid var(--sawah); outline-offset: 2px; }
+.src { color: var(--muted); font-size: 0.76rem; max-width: 1180px; width: 100%; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .slide.enter { animation: in 260ms ease-out; }
+  @keyframes in { from { opacity: 0.35; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+}
+@media (max-width: 760px) {
+  .slide { aspect-ratio: auto; }
+  .niche, .overview { grid-template-columns: minmax(0, 1fr); }
+  .right { justify-content: start; }
+  .bars { columns: 1; }
+  .figs { grid-template-columns: repeat(2, auto); }
+}
+</style>
+
+<div class="stage">
+  <div class="ctl">
+    <div class="grp">
+      <button class="nav" id="prev" type="button">Previous</button>
+      <button class="nav" id="next" type="button">Next</button>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="grp">
+      <label for="jump" class="count">Go to</label>
+      <select id="jump"></select>
+    </div>
+  </div>
+  <div id="deck"></div>
+</div>
+<p class="src">Source: Google Ads Keyword Planner, account, location Bali province, all languages. Searches are Google's Oct 2025 to Sep 2026 averages, rounded to range midpoints because the account has no ad spend. Top bids are Google's top-of-page bid estimates. Verdicts state data; "Suggestion" marks a judgement call. Pulled 3 Nov 2026.</p>
+
+<script>
+const DATA = [{"n": "Flowers", "group": "first", "searches": 13900, "kws": 17, "withdata": 17, "maxbid": 26823, "note": "13,900 searches in Indonesian and English; 'flower delivery bali' bids up to IDR 26.8K. Suggestion: test first; same-day delivery is the edge over marketplaces. Suggestion: near-me (terdekat) searches favour a shop with a Google Business Profile.", "q": [{"k": "buket bunga", "intent": "Product (category)", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 15561, "comp": "Medium"}, {"k": "toko bunga terdekat", "intent": "Store / near me", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 6992, "comp": "Medium"}, {"k": "flower delivery bali", "intent": "Delivery", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": 26823, "comp": "High"}], "maps": true}, {"n": "CCTV", "group": "first", "searches": 11800, "kws": 12, "withdata": 11, "maxbid": 32810, "note": "11,800 searches ('cctv bali' and 'cctv denpasar' 1K–10K each). Installation searches bid up to IDR 32.8K, which suggests advertisers make money here. Suggestion: test first.", "q": [{"k": "cctv denpasar", "intent": "Local product", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 12203, "comp": "Low"}, {"k": "cctv bali", "intent": "Local product", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 12105, "comp": "Low"}, {"k": "toko cctv denpasar", "intent": "Store / near me", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 20509, "comp": "High"}], "maps": false}, {"n": "Water heaters", "group": "codex", "searches": 7800, "kws": 12, "withdata": 12, "maxbid": 22746, "note": "7,800 searches. 'water heater' gets 1K–10K; bids go up to IDR 22.7K.", "q": [{"k": "water heater", "intent": "Product (category)", "lang": "EN", "range": "1K – 10K", "avg": 5000, "hi": 15195, "comp": "Medium"}, {"k": "ariston water heater", "intent": "Product (category)", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": 9522, "comp": "High"}, {"k": "water heater listrik", "intent": "Product (category)", "lang": "Mixed", "range": "100 – 1K", "avg": 500, "hi": 6955, "comp": "High"}], "maps": false}, {"n": "E-bikes", "group": "first", "searches": 12650, "kws": 13, "withdata": 10, "maxbid": 10757, "note": "12,650 searches. 'harga sepeda listrik' gets 1K–10K at a top bid of about IDR 1.6K, so clicks are cheap for a high-ticket product. Suggestion: test first.", "q": [{"k": "sepeda listrik", "intent": "Product (category)", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 2568, "comp": "Medium"}, {"k": "harga sepeda listrik", "intent": "Price check", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 1633, "comp": "High"}, {"k": "e bike bali", "intent": "Local product", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": 10363, "comp": "High"}], "maps": false}, {"n": "Souvenirs", "group": "first", "searches": 27150, "kws": 12, "withdata": 12, "maxbid": 5881, "note": "27,150 searches, led by 'souvenir bali', 'oleh oleh bali' and 'pie susu' (1K–10K each), but top bids are low (IDR 5.9K). 'souvenir pernikahan' (wedding souvenirs, 100–1K) is the clearest buyer search.", "q": [{"k": "souvenir bali", "intent": "Local product", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 5881, "comp": "Low"}, {"k": "oleh oleh bali", "intent": "Local product", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 4084, "comp": "Low"}, {"k": "pie susu", "intent": "Product (category)", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 3832, "comp": "Low"}], "maps": false}, {"n": "Water filters", "group": "first", "searches": 6400, "kws": 12, "withdata": 11, "maxbid": 14284, "note": "6,400 searches. 'filter air' gets 1K–10K and 'water filter bali' bids up to IDR 11.4K.", "q": [{"k": "filter air", "intent": "Product (category)", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 13399, "comp": "High"}, {"k": "water filter bali", "intent": "Local product", "lang": "Mixed", "range": "100 – 1K", "avg": 500, "hi": 11400, "comp": "High"}, {"k": "filter air sumur", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 6754, "comp": "High"}], "maps": false}, {"n": "Furniture", "group": "first", "searches": 3750, "kws": 13, "withdata": 12, "maxbid": 16839, "note": "3,750 searches. English searches such as 'outdoor furniture bali' and 'teak furniture bali' bid up to IDR 16.8K.", "q": [{"k": "outdoor furniture bali", "intent": "Local product", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": 16839, "comp": "High"}, {"k": "sofa bed", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 14139, "comp": "High"}, {"k": "furniture bali", "intent": "Local product", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": 10684, "comp": "Medium"}], "maps": false}, {"n": "Generators", "group": "codex", "searches": 6900, "kws": 12, "withdata": 12, "maxbid": 50183, "note": "6,900 searches ('genset' 1K–10K). 'genset bali' bids up to IDR 50.2K, the highest bid among the Codex niches.", "q": [{"k": "genset bali", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 50183, "comp": "Medium"}, {"k": "harga genset", "intent": "Price check", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 9398, "comp": "High"}, {"k": "sewa genset bali", "intent": "Rent", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 7564, "comp": "Medium"}], "maps": false}, {"n": "Catering", "group": "first", "searches": 6850, "kws": 13, "withdata": 11, "maxbid": 20253, "note": "6,850 searches; 'catering bali' bids up to IDR 10.8K. Suggestion: this is a service with daily operations, so it needs a kitchen partner.", "q": [{"k": "catering bali", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 10780, "comp": "Medium"}, {"k": "catering denpasar", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 7264, "comp": "Medium"}, {"k": "nasi kotak denpasar", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Low"}], "maps": false}, {"n": "Curtains & blinds", "group": "codex", "searches": 8100, "kws": 12, "withdata": 9, "maxbid": 28447, "note": "8,100 searches. 'gorden' gets 1K–10K; 'roller blind' bids up to IDR 24.3K.", "q": [{"k": "roller blind", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 24285, "comp": "High"}, {"k": "curtains bali", "intent": "Local product", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": 17535, "comp": "Medium"}, {"k": "gorden bali", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 16566, "comp": "Medium"}], "maps": false}, {"n": "Decking", "group": "codex", "searches": 4150, "kws": 12, "withdata": 11, "maxbid": 20087, "note": "4,150 searches across wood decking and vinyl or SPC flooring; bids go up to IDR 20.1K.", "q": [{"k": "decking kayu", "intent": "Product (category)", "lang": "Mixed", "range": "100 – 1K", "avg": 500, "hi": 20087, "comp": "Medium"}, {"k": "decking wpc", "intent": "Product (category)", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": 11498, "comp": "High"}, {"k": "spc flooring", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 11197, "comp": "High"}], "maps": false}, {"n": "Mattresses", "group": "first", "searches": 11950, "kws": 14, "withdata": 14, "maxbid": 15776, "note": "11,950 searches. 'kasur lipat' gets 1K–10K; bids go up to IDR 15.8K.", "q": [{"k": "kasur lipat", "intent": "Product (category)", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 9448, "comp": "High"}, {"k": "kasur busa", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 13466, "comp": "High"}, {"k": "harga kasur", "intent": "Price check", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 9974, "comp": "Medium"}], "maps": false}, {"n": "Pet food", "group": "first", "searches": 62200, "kws": 14, "withdata": 11, "maxbid": 77952, "note": "Highest search volume of all 36 niches: 'pet shop terdekat' 10K–100K, 'pet shop bali' and 'makanan kucing' 1K–10K. 'dog food' bids up to IDR 78K, the highest bid in the list. Suggestion: near-me (terdekat) searches favour a shop with a Google Business Profile.", "q": [{"k": "pet shop terdekat", "intent": "Store / near me", "lang": "Mixed", "range": "10K – 100K", "avg": 50000, "hi": 3908, "comp": "Low"}, {"k": "pet shop bali", "intent": "Store / near me", "lang": "EN", "range": "1K – 10K", "avg": 5000, "hi": 10170, "comp": "Low"}, {"k": "makanan kucing", "intent": "Product (category)", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 9248, "comp": "Medium"}], "maps": true}, {"n": "Solar", "group": "first", "searches": 1800, "kws": 12, "withdata": 9, "maxbid": 32847, "note": "1,800 searches, but bids reach IDR 32.8K for a high-ticket installed product.", "q": [{"k": "panel surya", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 32436, "comp": "Medium"}, {"k": "solar panel bali", "intent": "Local product", "lang": "Mixed", "range": "100 – 1K", "avg": 500, "hi": 25540, "comp": "Medium"}, {"k": "harga panel surya", "intent": "Price check", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 4149, "comp": "High"}], "maps": false}, {"n": "Kebaya", "group": "first", "searches": 16750, "kws": 13, "withdata": 11, "maxbid": 695, "note": "16,750 searches: 'kebaya bali', 'sewa kebaya bali' and 'kamen bali' get 1K–10K each. Top bids are under IDR 1K, so clicks are very cheap.", "q": [{"k": "kebaya bali", "intent": "Local product", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 695, "comp": "Low"}, {"k": "sewa kebaya bali", "intent": "Rent", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": null, "comp": "Low"}, {"k": "kamen bali", "intent": "Local product", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": null, "comp": "Low"}], "maps": false}, {"n": "Countertops", "group": "codex", "searches": 1950, "kws": 12, "withdata": 12, "maxbid": 10363, "note": "1,950 searches, mostly for kitchen sets; bids go up to IDR 10.4K.", "q": [{"k": "kitchen set bali", "intent": "Local product", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": 10363, "comp": "Medium"}, {"k": "kitchen set minimalis", "intent": "Product (category)", "lang": "Mixed", "range": "100 – 1K", "avg": 500, "hi": 10270, "comp": "Medium"}, {"k": "kitchen bali", "intent": "Local product", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Low"}], "maps": false}, {"n": "Kitchen equipment", "group": "codex", "searches": 1900, "kws": 12, "withdata": 11, "maxbid": 12719, "note": "1,900 searches; 'meja stainless' bids up to IDR 12.7K.", "q": [{"k": "meja stainless", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 12719, "comp": "High"}, {"k": "oven gas", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 4873, "comp": "High"}, {"k": "mesin kopi", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 3135, "comp": "High"}], "maps": false}, {"n": "Hampers", "group": "first", "searches": 7750, "kws": 13, "withdata": 11, "maxbid": 38393, "note": "7,750 searches, seasonal: Christmas, Lebaran and Imlek. 'hampers' bids up to IDR 38.4K.", "q": [{"k": "hampers bali", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Medium"}, {"k": "hampers natal", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Medium"}, {"k": "hampers lebaran", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "High"}], "maps": false}, {"n": "Birthday cake", "group": "first", "searches": 56700, "kws": 13, "withdata": 9, "maxbid": 15973, "note": "'toko kue terdekat' gets 10K–100K searches and 'bento cake' 1K–10K; 'birthday cake bali' bids up to IDR 16K. 'kue ulang tahun' returned no data. Suggestion: near-me (terdekat) searches favour a shop with a Google Business Profile.", "q": [{"k": "toko kue terdekat", "intent": "Store / near me", "lang": "ID", "range": "10K – 100K", "avg": 50000, "hi": 2561, "comp": "Low"}, {"k": "bento cake", "intent": "Product (category)", "lang": "EN", "range": "1K – 10K", "avg": 5000, "hi": null, "comp": "Low"}, {"k": "birthday cake bali", "intent": "Local product", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": 15973, "comp": "Medium"}], "maps": true}, {"n": "Aluminium windows/doors", "group": "codex", "searches": 2300, "kws": 12, "withdata": 10, "maxbid": 6447, "note": "2,300 searches; bids go up to IDR 6.4K.", "q": [{"k": "pintu aluminium", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 6447, "comp": "High"}, {"k": "kusen aluminium", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 5594, "comp": "Medium"}, {"k": "jendela aluminium", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 5226, "comp": "High"}], "maps": false}, {"n": "Commercial fridges", "group": "codex", "searches": 12250, "kws": 12, "withdata": 11, "maxbid": 10224, "note": "12,250 searches ('freezer' and 'toko elektronik denpasar' 1K–10K each); 'chest freezer' bids up to IDR 10.2K.", "q": [{"k": "toko elektronik denpasar", "intent": "Store / near me", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 4782, "comp": "Low"}, {"k": "chest freezer", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 10196, "comp": "High"}, {"k": "freezer box", "intent": "Product (category)", "lang": "Mixed", "range": "100 – 1K", "avg": 500, "hi": 5386, "comp": "High"}], "maps": false}, {"n": "Ice makers", "group": "codex", "searches": 1400, "kws": 12, "withdata": 10, "maxbid": 30499, "note": "1,400 searches; 'ice maker machine' bids up to IDR 30.5K.", "q": [{"k": "ice maker", "intent": "Product (category)", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": 18199, "comp": "High"}, {"k": "jual es batu", "intent": "Buy / order", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Low"}, {"k": "ice maker machine", "intent": "Product (category)", "lang": "EN", "range": "10 – 100", "avg": 50, "hi": 30499, "comp": "High"}], "maps": false}, {"n": "Tiles", "group": "first", "searches": 10500, "kws": 12, "withdata": 12, "maxbid": 20499, "note": "10,500 searches ('keramik dinding' 1K–10K); 'terrazzo bali' bids up to IDR 20.5K.", "q": [{"k": "keramik dinding", "intent": "Product (category)", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 2178, "comp": "Medium"}, {"k": "terrazzo bali", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 20499, "comp": "Low"}, {"k": "tiles bali", "intent": "Local product", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": 8347, "comp": "Medium"}], "maps": false}, {"n": "Shower glass", "group": "codex", "searches": 850, "kws": 12, "withdata": 8, "maxbid": 29226, "note": "850 searches; 'shower screen' bids up to IDR 29.2K.", "q": [{"k": "kaca tempered", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 12662, "comp": "Medium"}, {"k": "shower screen", "intent": "Product (category)", "lang": "Mixed", "range": "10 – 100", "avg": 50, "hi": 29226, "comp": "Medium"}, {"k": "harga kaca tempered", "intent": "Price check", "lang": "ID", "range": "10 – 100", "avg": 50, "hi": 7762, "comp": "Low"}], "maps": false}, {"n": "Water tanks", "group": "codex", "searches": 2350, "kws": 12, "withdata": 11, "maxbid": 44090, "note": "2,350 searches; 'tangki air' bids up to IDR 44.1K.", "q": [{"k": "tangki air", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 44090, "comp": "Medium"}, {"k": "tandon air", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 17897, "comp": "High"}, {"k": "toren air", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Medium"}], "maps": false}, {"n": "Rattan", "group": "first", "searches": 2800, "kws": 12, "withdata": 11, "maxbid": 16674, "note": "2,800 searches. 'kursi rotan' is the main one (100–1K, bids up to IDR 16.5K).", "q": [{"k": "kursi rotan", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 16536, "comp": "High"}, {"k": "tas rotan bali", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "High"}, {"k": "lampu rotan", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "High"}], "maps": false}, {"n": "Steel gates & railings", "group": "codex", "searches": 7350, "kws": 12, "withdata": 12, "maxbid": 24428, "note": "7,350 searches ('kanopi' 1K–10K); bids go up to IDR 24.4K.", "q": [{"k": "kanopi bali", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 8230, "comp": "Medium"}, {"k": "pagar besi minimalis", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Low"}, {"k": "pagar besi", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Medium"}], "maps": false}, {"n": "Pool equipment", "group": "codex", "searches": 1850, "kws": 12, "withdata": 10, "maxbid": 6170, "note": "1,850 searches; bids go up to IDR 6.2K.", "q": [{"k": "kolam renang bali", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 6170, "comp": "Low"}, {"k": "pompa kolam renang", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 4852, "comp": "High"}, {"k": "filter kolam renang", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 4642, "comp": "High"}], "maps": false}, {"n": "Plants", "group": "first", "searches": 12300, "kws": 13, "withdata": 12, "maxbid": 10646, "note": "12,300 searches ('tanaman hias' 1K–10K) and no bid data on most keywords.", "q": [{"k": "tanaman hias", "intent": "Product (category)", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": null, "comp": "Low"}, {"k": "jual tanaman hias", "intent": "Buy / order", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Low"}, {"k": "rumput gajah mini", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Medium"}], "maps": false}, {"n": "EV chargers", "group": "codex", "searches": 1450, "kws": 12, "withdata": 11, "maxbid": 41830, "note": "1,450 searches; 'ev charger' bids up to IDR 41.8K.", "q": [{"k": "ev charger", "intent": "Product (category)", "lang": "Mixed", "range": "100 – 1K", "avg": 500, "hi": 41830, "comp": "Medium"}, {"k": "spklu bali", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Low"}, {"k": "wall charger mobil listrik", "intent": "Product (category)", "lang": "Mixed", "range": "10 – 100", "avg": 50, "hi": 5610, "comp": "High"}], "maps": false}, {"n": "Surfboards", "group": "codex", "searches": 1500, "kws": 12, "withdata": 12, "maxbid": 7719, "note": "1,500 searches; bids go up to IDR 7.7K.", "q": [{"k": "surf shop bali", "intent": "Store / near me", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": 7648, "comp": "Low"}, {"k": "surfboard bali", "intent": "Local product", "lang": "EN", "range": "10 – 100", "avg": 50, "hi": 7695, "comp": "Medium"}, {"k": "harga papan selancar", "intent": "Price check", "lang": "ID", "range": "10 – 100", "avg": 50, "hi": 7433, "comp": "High"}], "maps": false}, {"n": "Wine", "group": "first", "searches": 6850, "kws": 13, "withdata": 11, "maxbid": 26891, "note": "6,850 searches, but Google allows no alcohol ads in Indonesia (maximum 0% alcohol, per Google's Alcohol sale policy), so Google Ads is not an option here.", "q": [{"k": "hatten wine", "intent": "Product (category)", "lang": "EN", "range": "1K – 10K", "avg": 5000, "hi": 10638, "comp": "Low"}, {"k": "wine bali", "intent": "Local product", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": 14990, "comp": "Low"}, {"k": "two islands wine", "intent": "Product (category)", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": 8229, "comp": "Low"}], "maps": false}, {"n": "Wedding decor", "group": "first", "searches": 1850, "kws": 12, "withdata": 10, "maxbid": 11467, "note": "1,850 searches; bids go up to IDR 11.5K.", "q": [{"k": "wedding decor bali", "intent": "Local product", "lang": "EN", "range": "100 – 1K", "avg": 500, "hi": 11467, "comp": "Low"}, {"k": "dekorasi pernikahan bali", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 10147, "comp": "Low"}, {"k": "dekorasi pernikahan", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Low"}], "maps": false}, {"n": "Batu paras", "group": "first", "searches": 12700, "kws": 12, "withdata": 11, "maxbid": 7431, "note": "12,700 searches, mostly 'batu alam' and 'batu andesit' (1K–10K each); bids go up to IDR 7.4K.", "q": [{"k": "batu alam", "intent": "Product (category)", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 5448, "comp": "Low"}, {"k": "batu andesit", "intent": "Product (category)", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": 5094, "comp": "Medium"}, {"k": "batu alam bali", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": 7431, "comp": "Low"}], "maps": false}, {"n": "Offerings", "group": "first", "searches": 12150, "kws": 13, "withdata": 9, "maxbid": 20989, "note": "12,150 searches. 'canang sari' gets 1K–10K and bids up to IDR 21K; most banten keywords have no bid data.", "q": [{"k": "canang sari", "intent": "Product (category)", "lang": "Mixed", "range": "1K – 10K", "avg": 5000, "hi": 20989, "comp": "Low"}, {"k": "banten bali", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Low"}, {"k": "banten otonan", "intent": "Product (category)", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Low"}], "maps": false}, {"n": "Kain endek", "group": "first", "searches": 9600, "kws": 12, "withdata": 12, "maxbid": null, "note": "9,600 searches ('endek bali' 1K–10K) and no bid data.", "q": [{"k": "endek bali", "intent": "Local product", "lang": "ID", "range": "1K – 10K", "avg": 5000, "hi": null, "comp": "Medium"}, {"k": "kain endek bali", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Medium"}, {"k": "kain songket bali", "intent": "Local product", "lang": "ID", "range": "100 – 1K", "avg": 500, "hi": null, "comp": "Medium"}], "maps": false}];
+const fmt = n => n == null ? "–" : n.toLocaleString("en-US");
+const idr = n => n == null ? "no bid data" : "IDR " + (n >= 1000 ? (n / 1000).toFixed(n >= 10000 ? 1 : 1).replace(/\.0$/, "") + "K" : n);
+const slug = s => s.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const SORTS = { searches: { label: "monthly searches", key: d => d.searches, tie: d => d.maxbid || 0 } };
+let sortBy = "searches";
+let ORDER = [];
+const search = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>';
+
+
+function nicheSlide(d, i) {
+  const qs = d.q.map(q => `
+    <div class="q">
+      <div class="box">${search}<span class="t">${esc(q.k)}</span><span class="caret" aria-hidden="true"></span></div>
+      <div class="meta"><span><em>${esc(q.range)}</em> searches/mo</span><span>top bid <em>${q.hi ? idr(q.hi) : "none"}</em></span><span>competition <em>${q.comp ? esc(q.comp.toLowerCase()) : "n/a"}</em></span><span>${esc(q.intent)}, ${q.lang === "ID" ? "Indonesian" : q.lang === "EN" ? "English" : "mixed"}</span></div>
+    </div>`).join("");
+  return `<section class="slide niche" id="${slug(d.n)}" aria-label="${esc(d.n)}" hidden>
+    <div class="top"><span class="rank">${i + 1}<span> of ${ORDER.length} by ${SORTS[sortBy].label}</span></span><span class="chips">${d.group === "codex" ? '<span class="pill other">Suggested by Codex</span>' : ""}${d.maps ? '<span class="pill maps" title="A near-me (terdekat) search gets 1K+ searches a month">Near-me searches</span>' : ""}</span></div>
+    <div class="left">
+      <div><h2>${esc(d.n)}</h2><p class="note">${esc(d.note)}</p></div>
+      <div>
+        <div class="figs">
+          <div class="fig s"><b>${fmt(d.searches)}</b><small>searches a month</small></div>
+          <div class="fig a"><b>${d.maxbid ? idr(d.maxbid).replace("IDR ", "") : "–"}</b><small>highest top bid, IDR</small></div>
+          <div class="fig"><b>${d.withdata}/${d.kws}</b><small>keywords with data</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="right"><h3>Top searches buyers type</h3>${qs}</div>
+    <div class="foot"><span>Searches are the sum of Google's rounded averages across this niche's keywords.</span><span>Keyword Planner, Bali, Oct 2025 to Sep 2026</span></div>
+  </section>`;
+}
+
+function overview() {
+  const k = SORTS[sortBy].key, max = k(ORDER[0]);
+  const bars = ORDER.map((d, i) => `<button class="bar${d.group === "codex" ? " codex" : ""}${sortBy === "searches" ? " srch" : ""}" type="button" data-go="${i + 1}"><span class="nm">${i + 1}. ${esc(d.n)}${d.maps ? " *" : ""}</span><span class="tr"><span style="width:${Math.max(1.5, k(d) / max * 100)}%"></span></span><span class="v">${fmt(k(d))}</span></button>`).join("");
+  return `<section class="slide overview${sortBy === "searches" ? " srch" : ""}" id="overview" aria-label="Overview" hidden>
+    <div class="ov-left">
+      <h1>Where Bali buys</h1>
+      <p>${ORDER.length} product niches you can source locally, ranked by monthly searches in Bali (Google Keyword Planner averages, Oct 2025 to Sep 2026). Each slide shows the niche's demand and the three searches buyers type most.</p>
+      <div class="key"><span><i class="sw solid"></i>First-round niches</span><span><i class="sw striped"></i>Niches Codex suggested</span><span>* A near-me (terdekat) search gets 1K+ searches a month.</span><span>Click a niche to open its slide.</span></div>
+    </div>
+    <div class="bars">${bars}</div>
+  </section>`;
+}
+
+const deck = document.getElementById("deck");
+const jump = document.getElementById("jump");
+let slides = [], cur = 0;
+function render() {
+  const s = SORTS[sortBy];
+  ORDER = [...DATA].sort((a, b) => s.key(b) - s.key(a) || s.tie(b) - s.tie(a));
+  deck.innerHTML = overview() + ORDER.map(nicheSlide).join("");
+  slides = [...deck.querySelectorAll(".slide")];
+  jump.innerHTML = `<option value="0">Overview</option>` + ORDER.map((d, i) => `<option value="${i + 1}">${i + 1}. ${esc(d.n)}</option>`).join("");
+}
+render();
+function show(i, push = true) {
+  cur = Math.max(0, Math.min(slides.length - 1, i));
+  slides.forEach((s, j) => { s.hidden = j !== cur; s.classList.toggle("enter", j === cur); });
+  document.getElementById("count").textContent = cur === 0 ? `Overview, ${ORDER.length} niches` : `${cur} of ${ORDER.length}`;
+  document.getElementById("prev").disabled = cur === 0;
+  document.getElementById("next").disabled = cur === slides.length - 1;
+  jump.value = String(cur);
+  if (push) try { history.replaceState(null, "", "#" + slides[cur].id); } catch (e) {}
+}
+document.getElementById("prev").onclick = () => show(cur - 1);
+document.getElementById("next").onclick = () => show(cur + 1);
+jump.onchange = () => show(+jump.value);
+deck.addEventListener("click", e => { const b = e.target.closest("[data-go]"); if (b) show(+b.dataset.go); });
+document.addEventListener("keydown", e => {
+  if (e.target.matches("select")) return;
+  if (e.key === "ArrowRight" || e.key === "PageDown") show(cur + 1);
+  if (e.key === "ArrowLeft" || e.key === "PageUp") show(cur - 1);
+  if (e.key === "Home") show(0);
+});
+let tx = null;
+deck.addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, { passive: true });
+deck.addEventListener("touchend", e => { if (tx == null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 60) show(cur + (dx < 0 ? 1 : -1)); tx = null; });
+const start = slides.findIndex(s => "#" + s.id === location.hash);
+show(start > 0 ? start : 0, false);
+</script>
