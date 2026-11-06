@@ -1,4 +1,6 @@
-# Bali product demand (Google Ads Keyword Planner, 3 Nov 2026)
+# Bali product demand: what people in Bali search to buy (Google Keyword Planner, 3 Nov 2026)
+
+Buyer-intent Google search demand for 36 product niches in Bali, with 450 keywords, monthly searches and top-of-page bids, pulled from Google Ads Keyword Planner for October 2025 to September 2026.
 
 Goal: find products with buyer demand in Bali that you can source locally, photograph and sell with Google Search ads. Coffee, and niches where Shopee or Tokopedia win on price, are left out.
 
@@ -28,3 +30,30 @@ Most searches: pet food (62,200), birthday cake (56,700), souvenirs (27,150), ke
 Highest bids, a sign that searches turn into sales: dog food (IDR 78K), genset bali (IDR 50.2K), tangki air (IDR 44.1K), ev charger (IDR 41.8K), hampers (IDR 38.4K), solar and CCTV installation (IDR 32.8K).
 
 Wine can't be advertised on Google in Indonesia: Google's alcohol policy allows 0% alcohol there.
+
+## FAQ
+
+**Which products have the most search demand in Bali?**
+In this data: pet food (62,200 searches a month), birthday cake (56,700), souvenirs (27,150), kebaya (16,750) and flowers (13,900). See "Where to start" above.
+
+**Is this a list of business ideas for Bali?**
+It's demand data, not a business plan: it shows what people search to buy and what advertisers pay per click. Check margins, suppliers and competition before starting anything.
+
+**How accurate are the numbers?**
+Order of magnitude. The account had no ad spend, so Google rounds each keyword to a range midpoint. The steps to get exact figures are under "How to read the numbers".
+
+**Can I run the same research for another city in Indonesia?**
+Yes. Load the lists in `keyword-lists/` into Google Keyword Planner, use "Get search volume and forecasts", and set the location to that city.
+
+## Related repos
+
+- [claude-seo-skills-benchmark](https://github.com/s77sh/claude-seo-skills-benchmark): 5 Claude Code SEO skill packs tested on 20 planted problems.
+- [claude-random-numbers](https://github.com/s77sh/claude-random-numbers): which number Claude picks when asked for a random one, 446 prompts.
+- [interview-prep-pack](https://github.com/s77sh/interview-prep-pack): a Claude Code skill that builds interview prep from your own resume.
+- [viral-reel-playbook](https://github.com/s77sh/viral-reel-playbook): a Claude Code skill for Instagram Reels, TikTok and YouTube Shorts scripts.
+
+All of them, with what each one is for: [saeedseo.com/repos/](https://saeedseo.com/repos/).
+
+## Author
+
+Saeed Shahriar, senior SEO and growth marketer. [saeedseo.com](https://saeedseo.com)
